@@ -122,7 +122,7 @@ export default function WhatWeDoPage() {
         }}
       >
         <Image
-          src="/image/pic7.jpg"
+          src="/whatwedo/whatwedo.jpg"
           alt="What we do"
           fill
           priority
@@ -208,14 +208,14 @@ export default function WhatWeDoPage() {
           eyebrow="Driven by research"
           title="Diverse capabilities; consistent approach"
           description="Our strategies span trading frequencies and styles and are implemented across thousands of exchange-traded and over-the-counter instruments. All our strategies are rooted in our belief that original research can provide an investment edge."
-          imageSrc="/image/pic8.jpg"
+          imageSrc="/whatwedo/whatwedo2.jpg"
         />
 
         <InfoBlock
           eyebrow="Loss mitigation"
           title="Risk matters"
           description="Risk management underpins long-term success. The careful consideration of risk informs everything we do, from the design of our investment strategies to the size of our positions in markets."
-          imageSrc="/image/pic9.jpg"
+          imageSrc="/whatwedo/whatwedo3.jpg"
         />
       </Container>
     </Box>
