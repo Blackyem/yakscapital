@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AppBar, Box, Button, Container, Toolbar } from "@mui/material";
@@ -14,41 +14,33 @@ type DropdownItem = {
 };
 
 const aboutItems: DropdownItem[] = [
-  {
-    label: "What we do",
-    href: "/about-us/what-we-do",
-  },
-  {
-    label: "Our leadership",
-    href: "/about-us/leadership",
-  },
-  {
-    label: "Our responsibilities",
-    href: "/about-us/our-responsibilities",
-  },
-  {
-    label: "Our history",
-    href: "/about-us/history",
-  },
+  { label: "What we do", href: "/about-us/what-we-do" },
+  { label: "Our leadership", href: "/about-us/leadership" },
+  { label: "Our responsibilities", href: "/about-us/our-responsibilities" },
+  { label: "Our history", href: "/about-us/history" },
 ];
 
 const joinItems: DropdownItem[] = [
-  {
-    label: "Career opportunities",
-    href: "/join-us/careers",
-  },
-  {
-    label: "Life at YaksCapital",
-    href: "/join-us/life-at-yakscapital",
-  },
+  { label: "Career opportunities", href: "/join-us/careers" },
+  { label: "Life at YaksCapital", href: "/join-us/life-at-yakscapital" },
 ];
 
 export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<DropdownKey>(null);
+  const [scrolled, setScrolled] = useState(false);
 
-  const closeDropdown = () => {
-    setOpenDropdown(null);
+  useEffect(() => {
+  const handleScroll = () => {
+    setScrolled(window.scrollY > 20);
   };
+
+  handleScroll();
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
+  const closeDropdown = () => setOpenDropdown(null);
 
   const toggleDropdown = (key: Exclude<DropdownKey, null>) => {
     setOpenDropdown((current) => (current === key ? null : key));
@@ -58,18 +50,15 @@ export default function Navbar() {
     <AppBar
       position="fixed"
       elevation={0}
-      sx={{
-        bgcolor: "#052f28",
-        borderTop: "4px solid #f5f5f0",
-        zIndex: 1200,
-      }}
+     sx={{
+  bgcolor: scrolled ? "#052f28" : "transparent",
+  borderTop: scrolled ? "4px solid #f5f5f0" : "4px solid transparent",
+  boxShadow: "none",
+  transition: "background-color 250ms ease, border-color 250ms ease",
+  zIndex: 1200,
+}}
     >
-      <Container
-        maxWidth={false}
-        sx={{
-          px: { xs: 2.5, md: 4.5 },
-        }}
-      >
+      <Container maxWidth={false} sx={{ px: { xs: 2.5, md: 4.5 } }}>
         <Toolbar
           disableGutters
           sx={{
@@ -85,8 +74,6 @@ export default function Navbar() {
           <Link href="/" aria-label="YaksCapital home" onClick={closeDropdown}>
             <Box
               sx={{
-                display: "flex",
-                alignItems: "center",
                 width: { xs: 160, md: 180 },
                 height: 48,
                 position: "relative",
@@ -124,7 +111,6 @@ export default function Navbar() {
               dropdownKey="about"
               openDropdown={openDropdown}
               onToggle={toggleDropdown}
-              onOpen={setOpenDropdown}
               onClose={closeDropdown}
               items={aboutItems}
             />
@@ -138,7 +124,6 @@ export default function Navbar() {
               dropdownKey="join"
               openDropdown={openDropdown}
               onToggle={toggleDropdown}
-              onOpen={setOpenDropdown}
               onClose={closeDropdown}
               items={joinItems}
             />
@@ -163,6 +148,8 @@ export default function Navbar() {
                 height: 49,
                 px: 3,
                 fontSize: 14,
+                boxShadow: "none",
+                textTransform: "none",
                 "&:hover": {
                   bgcolor: "#f2f2ed",
                   boxShadow: "none",
@@ -182,6 +169,7 @@ export default function Navbar() {
               px: 2,
               py: 1,
               justifySelf: "end",
+              textTransform: "none",
             }}
           >
             Menu
@@ -202,26 +190,25 @@ function TopNavLink({ href, children, onClick }: TopNavLinkProps) {
   return (
     <Link href={href} onClick={onClick}>
       <Box
+        component="span"
         sx={{
           position: "relative",
+          display: "inline-block",
           color: "#ffffff",
           fontSize: 15,
           lineHeight: 1,
           whiteSpace: "nowrap",
           cursor: "pointer",
-          "&:hover": {
-            opacity: 0.86,
-          },
           "&::after": {
             content: '""',
             position: "absolute",
             left: 0,
             right: 0,
-            bottom: -10,
+            bottom: -3,
             height: "1px",
-            bgcolor: "rgba(255,255,255,0.95)",
+            bgcolor: "currentColor",
             transform: "scaleX(0)",
-            transformOrigin: "center",
+            transformOrigin: "left",
             transition: "transform 180ms ease",
           },
           "&:hover::after": {
@@ -240,7 +227,6 @@ type DropdownTriggerProps = {
   dropdownKey: Exclude<DropdownKey, null>;
   openDropdown: DropdownKey;
   onToggle: (key: Exclude<DropdownKey, null>) => void;
-  onOpen: (key: DropdownKey) => void;
   onClose: () => void;
   items: DropdownItem[];
 };
@@ -250,7 +236,6 @@ function DropdownTrigger({
   dropdownKey,
   openDropdown,
   onToggle,
-  onOpen,
   onClose,
   items,
 }: DropdownTriggerProps) {
@@ -258,8 +243,6 @@ function DropdownTrigger({
 
   return (
     <Box
-      onMouseEnter={() => onOpen(dropdownKey)}
-      onMouseLeave={onClose}
       sx={{
         position: "relative",
         height: "100%",
@@ -278,39 +261,44 @@ function DropdownTrigger({
           }
         }}
         sx={{
-          position: "relative",
-          display: "flex",
+          display: "inline-flex",
           alignItems: "center",
-          gap: 0.4,
+          gap: 0.45,
           color: "#ffffff",
           fontSize: 15,
           lineHeight: 1,
           whiteSpace: "nowrap",
           cursor: "pointer",
           outline: "none",
-          "&:hover": {
-            opacity: 0.86,
-          },
-          "&::after": {
-            content: '""',
-            position: "absolute",
-            left: 0,
-            right: 0,
-            bottom: -10,
-            height: "1px",
-            bgcolor: "rgba(255,255,255,0.95)",
-            transform: isOpen ? "scaleX(1)" : "scaleX(0)",
-            transformOrigin: "center",
-            transition: "transform 180ms ease",
-          },
-          "&:hover::after": {
+          "&:hover .dropdown-label::after": {
             transform: "scaleX(1)",
           },
         }}
         aria-haspopup="menu"
         aria-expanded={isOpen}
       >
-        {label}
+        <Box
+          component="span"
+          className="dropdown-label"
+          sx={{
+            position: "relative",
+            display: "inline-block",
+            "&::after": {
+              content: '""',
+              position: "absolute",
+              left: 0,
+              right: 0,
+              bottom: -3,
+              height: "1px",
+              bgcolor: "currentColor",
+              transform: isOpen ? "scaleX(1)" : "scaleX(0)",
+              transformOrigin: "left",
+              transition: "transform 180ms ease",
+            },
+          }}
+        >
+          {label}
+        </Box>
 
         <KeyboardArrowDownIcon
           sx={{
@@ -340,19 +328,20 @@ function DropdownMenu({ items, onClose }: DropdownMenuProps) {
         top: "100%",
         left: "50%",
         transform: "translateX(-50%)",
-        pt: 2,
+        pt: 1.4,
         zIndex: 30,
       }}
     >
       <Box
         role="menu"
         sx={{
-          width: 270,
-          bgcolor: "#ffffff",
-          color: "#052f28",
-          boxShadow: "0 18px 60px rgba(0,0,0,0.25)",
-          border: "1px solid rgba(5,47,40,0.08)",
+          width: 205,
+          bgcolor: "#188a78",
+          color: "#ffffff",
+          boxShadow: "0 14px 40px rgba(0,0,0,0.22)",
+          borderRadius: "4px",
           overflow: "hidden",
+          py: 1,
         }}
       >
         {items.map((item) => (
@@ -360,34 +349,38 @@ function DropdownMenu({ items, onClose }: DropdownMenuProps) {
             <Box
               role="menuitem"
               sx={{
-                position: "relative",
-                px: 3,
-                py: 2.2,
+                px: 2.4,
+                py: 1.15,
                 fontSize: 15,
                 color: "inherit",
-                transition: "background-color 180ms ease, color 180ms ease",
-                "&:hover": {
-                  bgcolor: "#073f35",
-                  color: "#ffffff",
-                },
-                "&::after": {
-                  content: '""',
-                  position: "absolute",
-                  left: 24,
-                  right: 24,
-                  bottom: 12,
-                  height: "1px",
-                  bgcolor: "currentColor",
-                  transform: "scaleX(0)",
-                  transformOrigin: "left",
-                  transition: "transform 180ms ease",
-                },
-                "&:hover::after": {
+                cursor: "pointer",
+                "&:hover .dropdown-text::after": {
                   transform: "scaleX(1)",
                 },
               }}
             >
-              {item.label}
+              <Box
+                component="span"
+                className="dropdown-text"
+                sx={{
+                  position: "relative",
+                  display: "inline-block",
+                  "&::after": {
+                    content: '""',
+                    position: "absolute",
+                    left: 0,
+                    right: 0,
+                    bottom: -3,
+                    height: "1px",
+                    bgcolor: "currentColor",
+                    transform: "scaleX(0)",
+                    transformOrigin: "left",
+                    transition: "transform 180ms ease",
+                  },
+                }}
+              >
+                {item.label}
+              </Box>
             </Box>
           </Link>
         ))}

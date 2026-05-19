@@ -2,6 +2,7 @@
 
 import { Box, Container, Typography } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function AboutSection() {
   return (
@@ -106,32 +107,35 @@ export default function AboutSection() {
             </Typography>
 
             {/* Pill button — white bg, dark text, matching Winton exactly */}
-            <Box>
-              <Box
-                component="button"
-                sx={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  px: 4,
-                  py: 1.75,
-                  bgcolor: "#ffffff",
-                  color: "#073f35",
-                  border: "none",
-                  borderRadius: "999px",
-                  fontSize: 15,
-                  fontWeight: 500,
-                  fontFamily: "var(--font-sans, sans-serif)",
-                  letterSpacing: "0.01em",
-                  cursor: "pointer",
-                  transition: "background 0.2s, color 0.2s",
-                  "&:hover": {
-                    bgcolor: "rgba(255,255,255,0.88)",
-                  },
-                }}
-              >
-                What we do
-              </Box>
-            </Box>
+          <Box>
+  <Box
+    component={Link}
+    href="/about-us/what-we-do"
+    sx={{
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      px: 4,
+      py: 1.75,
+      bgcolor: "#ffffff",
+      color: "#073f35",
+      border: "none",
+      borderRadius: "999px",
+      fontSize: 15,
+      fontWeight: 500,
+      fontFamily: "var(--font-sans, sans-serif)",
+      letterSpacing: "0.01em",
+      cursor: "pointer",
+      textDecoration: "none",
+      transition: "background 0.2s, color 0.2s",
+      "&:hover": {
+        bgcolor: "rgba(255,255,255,0.88)",
+      },
+    }}
+  >
+    What we do
+  </Box>
+</Box>
           </Box>
 
           {/* ── Right: image side ── */}

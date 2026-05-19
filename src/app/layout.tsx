@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+
 import Providers from "./providers";
+
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+
 import "./globals.css";
 
 const inter = Inter({
@@ -24,9 +29,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${playfair.variable}`}
+    >
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Navbar />
+
+          <main>{children}</main>
+
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

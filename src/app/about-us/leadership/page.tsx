@@ -1,55 +1,160 @@
-import { Box, Container, Typography } from "@mui/material";
-import Navbar from "@/components/layout/Navbar";
+
+"use client";
+
+import Link from "next/link";
+import { Box, Button, Container, Typography } from "@mui/material";
 
 export default function LeadershipPage() {
   return (
-    <Box component="main" sx={{ bgcolor: "#073f35", minHeight: "100vh" }}>
-      <Navbar />
+    <Box
+      component="main"
+      sx={{
+        bgcolor: "#073f35",
+        minHeight: "100vh",
+        color: "#ffffff",
+        display: "flex",
+        alignItems: "center",
+        position: "relative",
+        overflow: "hidden",
+        px: 2,
+      }}
+    >
+      {/* Background circles */}
+      <Box
+        sx={{
+          position: "absolute",
+          width: 360,
+          height: 360,
+          borderRadius: "50%",
+          bgcolor: "rgba(255,255,255,0.06)",
+          top: "18%",
+          left: "8%",
+        }}
+      />
+
+      <Box
+        sx={{
+          position: "absolute",
+          width: 520,
+          height: 520,
+          borderRadius: "50%",
+          bgcolor: "rgba(255,255,255,0.04)",
+          bottom: "-160px",
+          right: "-120px",
+        }}
+      />
 
       <Container
-        maxWidth="lg"
+        maxWidth="md"
         sx={{
-          pt: { xs: 18, md: 22 },
-          pb: { xs: 10, md: 14 },
+          pt: { xs: 16, md: 18 },
+          pb: { xs: 10, md: 12 },
+          textAlign: "center",
+          position: "relative",
+          zIndex: 2,
         }}
       >
         <Typography
-          component="p"
           sx={{
             fontSize: 13,
-            letterSpacing: "0.28em",
+            letterSpacing: "0.32em",
             textTransform: "uppercase",
+            color: "rgba(255,255,255,0.68)",
             mb: 3,
           }}
         >
-          Leadership
+          Page unavailable
         </Typography>
 
         <Typography
           component="h1"
           sx={{
             fontFamily: "var(--font-playfair), Georgia, serif",
-            fontSize: { xs: 48, md: 82 },
-            lineHeight: 1.05,
-            letterSpacing: "-0.035em",
-            maxWidth: 820,
-            mb: 4,
+            fontSize: { xs: 96, md: 160 },
+            lineHeight: 0.9,
+            letterSpacing: "-0.08em",
+            mb: 3,
           }}
         >
-          Focused on what matters
+          404
+        </Typography>
+
+        <Typography
+          component="h2"
+          sx={{
+            fontFamily: "var(--font-playfair), Georgia, serif",
+            fontSize: { xs: 34, md: 54 },
+            lineHeight: 1.05,
+            letterSpacing: "-0.035em",
+            mb: 3,
+          }}
+        >
+          Leadership page coming soon
         </Typography>
 
         <Typography
           sx={{
-            fontSize: { xs: 18, md: 22 },
-            lineHeight: 1.55,
-            maxWidth: 850,
+            maxWidth: 620,
+            mx: "auto",
+            fontSize: { xs: 16, md: 19 },
+            lineHeight: 1.7,
+            color: "rgba(255,255,255,0.76)",
+            mb: 5,
           }}
         >
-          Our leadership team brings together deep industry experience,
-          disciplined execution and a shared commitment to delivering for our
-          clients.
+          We are currently preparing this section. Please explore other pages
+          while we complete the leadership experience.
         </Typography>
+
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 2,
+            flexWrap: "wrap",
+          }}
+        >
+          <Button
+            component={Link}
+            href="/"
+            sx={{
+              bgcolor: "#ffffff",
+              color: "#073f35",
+              borderRadius: "999px",
+              px: 4,
+              py: 1.45,
+              textTransform: "none",
+              fontSize: 15,
+              fontWeight: 600,
+              "&:hover": {
+                bgcolor: "rgba(255,255,255,0.88)",
+              },
+            }}
+          >
+            Back to home
+          </Button>
+
+         <Button
+  component={Link}
+  href="/about-us/our-responsibilities"
+  sx={{
+    color: "#ffffff",
+    border: "1px solid rgba(255,255,255,0.42)",
+    borderRadius: "999px",
+    px: 4,
+    py: 1.45,
+    textTransform: "none",
+    fontSize: 15,
+    fontWeight: 600,
+    "&:hover": {
+      borderColor: "#ffffff",
+      bgcolor: "rgba(255,255,255,0.08)",
+    },
+  }}
+>
+  Visit our responsibilities
+</Button>
+        </Box>
       </Container>
     </Box>
   );

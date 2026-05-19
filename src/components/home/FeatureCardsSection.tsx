@@ -1,13 +1,17 @@
+"use client";
+
 import Image from "next/image";
-import { Box, Button, Container, Typography } from "@mui/material";
+import Link from "next/link";
+import { Box, Container, Typography } from "@mui/material";
 
 type FeatureCardProps = {
   eyebrow: string;
   title: string;
   description: string;
   buttonText: string;
+  href: string;
   imageSrc: string;
-  align?: "left" | "center";
+  align?: "top" | "center";
 };
 
 function FeatureCard({
@@ -15,8 +19,9 @@ function FeatureCard({
   title,
   description,
   buttonText,
+  href,
   imageSrc,
-  align = "left",
+  align = "center",
 }: FeatureCardProps) {
   const isCentered = align === "center";
 
@@ -107,23 +112,29 @@ function FeatureCard({
           {description}
         </Typography>
 
-        <Button
-          variant="contained"
+        <Box
+          component={Link}
+          href={href}
           sx={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            px: 4,
+            py: 1.6,
             bgcolor: "#ffffff",
-            color: "#214d46",
-            minWidth: 156,
-            height: 48,
-            px: 3,
-            fontSize: 14,
+            color: "#073f35",
+            borderRadius: "999px",
+            textDecoration: "none",
+            fontSize: 15,
+            fontWeight: 500,
+            transition: "all 0.2s ease",
             "&:hover": {
-              bgcolor: "#f2f2ed",
-              boxShadow: "none",
+              bgcolor: "rgba(255,255,255,0.88)",
             },
           }}
         >
           {buttonText}
-        </Button>
+        </Box>
       </Box>
     </Box>
   );
@@ -139,12 +150,7 @@ export default function FeatureCardsSection() {
         pb: { xs: 0, md: 4 },
       }}
     >
-      <Container
-        maxWidth={false}
-        sx={{
-          px: 0,
-        }}
-      >
+      <Container maxWidth={false} sx={{ px: 0 }}>
         <Box
           sx={{
             display: "grid",
@@ -157,6 +163,7 @@ export default function FeatureCardsSection() {
             title="Driven by Purpose"
             description="Experience matters, but execution defines us. Driven by decades of shared industry expertise, our executive team leads by example to set a forward-thinking agenda. We focus entirely on what matters most: delivering high-impact results, fostering long-term trust, and ensuring continuous success for our clients."
             buttonText="Our leadership"
+            href="/about-us/leadership"
             imageSrc="/image/pic5.jpg"
             align="center"
           />
@@ -166,6 +173,7 @@ export default function FeatureCardsSection() {
             title="Innovation as Our Edge"
             description="True investment edges are engineered, not found. YaksCapital was established to transform financial markets through continuous research and technological development. This commitment to innovation remains our core guiding principle, driving our strategy and ensuring we consistently deliver long-term value for our partners."
             buttonText="Our history"
+            href="/about-us/history"
             imageSrc="/image/pic11.jpg"
             align="center"
           />
