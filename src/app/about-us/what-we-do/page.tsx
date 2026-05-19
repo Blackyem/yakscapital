@@ -1,159 +1,222 @@
-   
 "use client";
-   
-import Link from "next/link";
-import { Box, Button, Container, Typography } from "@mui/material";
 
-export default function WhatWeDoPage() {
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { Box, Container, Typography } from "@mui/material";
+
+type InfoBlockProps = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  imageSrc: string;
+};
+
+function InfoBlock({ eyebrow, title, description, imageSrc }: InfoBlockProps) {
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  const [showContent, setShowContent] = useState(false);
+
+  useEffect(() => {
+    const element = contentRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setShowContent(entry.isIntersecting);
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <Box
-      component="main"
       sx={{
-        bgcolor: "#073f35",
-        minHeight: "100vh",
-        color: "#ffffff",
-        display: "flex",
+        display: "grid",
+        gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+        gap: { xs: 5, md: 12 },
         alignItems: "center",
-        position: "relative",
-        overflow: "hidden",
-        px: 2,
+        py: { xs: 7, md: 9 },
       }}
     >
       <Box
+        ref={contentRef}
         sx={{
-          position: "absolute",
-          width: 360,
-          height: 360,
-          borderRadius: "50%",
-          bgcolor: "rgba(255,255,255,0.06)",
-          top: "18%",
-          left: "8%",
-        }}
-      />
-
-      <Box
-        sx={{
-          position: "absolute",
-          width: 520,
-          height: 520,
-          borderRadius: "50%",
-          bgcolor: "rgba(255,255,255,0.04)",
-          bottom: "-160px",
-          right: "-120px",
-        }}
-      />
-
-      <Container
-        maxWidth="md"
-        sx={{
-          pt: { xs: 16, md: 18 },
-          pb: { xs: 10, md: 12 },
-          textAlign: "center",
-          position: "relative",
-          zIndex: 2,
+          maxWidth: 560,
+          opacity: showContent ? 1 : 0,
+          transform: showContent ? "translateX(0)" : "translateX(-70px)",
+          transition:
+            "opacity 800ms ease, transform 900ms cubic-bezier(0.22, 1, 0.36, 1)",
         }}
       >
         <Typography
           sx={{
-            fontSize: 13,
-            letterSpacing: "0.32em",
+            fontSize: 12,
+            letterSpacing: "0.34em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,0.68)",
+            color: "#0b2f29",
             mb: 3,
           }}
         >
-          Page unavailable
+          {eyebrow}
         </Typography>
 
-        <Typography
-          component="h1"
-          sx={{
-            fontFamily: "var(--font-playfair), Georgia, serif",
-            fontSize: { xs: 96, md: 160 },
-            lineHeight: 0.9,
-            letterSpacing: "-0.08em",
-            mb: 3,
-          }}
-        >
-          404
-        </Typography>
+        <Box sx={{ height: "1px", bgcolor: "rgba(7,63,53,0.32)", mb: 4 }} />
 
         <Typography
           component="h2"
           sx={{
             fontFamily: "var(--font-playfair), Georgia, serif",
-            fontSize: { xs: 34, md: 54 },
-            lineHeight: 1.05,
+            fontSize: { xs: 42, md: 58 },
+            lineHeight: 1.08,
             letterSpacing: "-0.035em",
-            mb: 3,
+            color: "#214d46",
+            mb: 4,
           }}
         >
-          What we do is coming soon
+          {title}
         </Typography>
 
         <Typography
           sx={{
-            maxWidth: 620,
-            mx: "auto",
-            fontSize: { xs: 16, md: 19 },
+            fontSize: { xs: 16, md: 17 },
             lineHeight: 1.7,
-            color: "rgba(255,255,255,0.76)",
-            mb: 5,
+            color: "#071f1b",
           }}
         >
-          This page is not available yet. Please visit another page while we
-          finish preparing this section.
+          {description}
         </Typography>
+      </Box>
+
+      <Box
+        sx={{
+          position: "relative",
+          height: { xs: 380, md: 530 },
+          borderRadius: "8px",
+          overflow: "hidden",
+        }}
+      >
+        <Image
+          src={imageSrc}
+          alt={title}
+          fill
+          sizes="(max-width: 900px) 100vw, 50vw"
+          style={{ objectFit: "cover" }}
+        />
+      </Box>
+    </Box>
+  );
+}
+
+export default function WhatWeDoPage() {
+  return (
+    <Box component="main" sx={{ bgcolor: "#ffffff", minHeight: "100vh" }}>
+      <Box
+        sx={{
+          position: "relative",
+          height: { xs: 520, md: 640 },
+          display: "flex",
+          alignItems: "flex-end",
+          overflow: "hidden",
+        }}
+      >
+        <Image
+          src="/image/pic7.jpg"
+          alt="What we do"
+          fill
+          priority
+          style={{ objectFit: "cover", objectPosition: "center" }}
+        />
 
         <Box
           sx={{
-            display: "flex",
-            justifyContent: "center",
-            gap: 2,
-            flexWrap: "wrap",
+            position: "absolute",
+            inset: 0,
+            bgcolor: "rgba(0,0,0,0.34)",
+          }}
+        />
+
+        <Container
+          maxWidth="lg"
+          sx={{
+            position: "relative",
+            zIndex: 2,
+            pb: { xs: 8, md: 12 },
           }}
         >
-          <Button
-            component={Link}
-            href="/"
+          <Typography
+            component="h1"
             sx={{
-              bgcolor: "#ffffff",
-              color: "#073f35",
-              borderRadius: "999px",
-              px: 4,
-              py: 1.45,
-              textTransform: "none",
-              fontSize: 15,
-              fontWeight: 600,
-              "&:hover": {
-                bgcolor: "rgba(255,255,255,0.88)",
-              },
-            }}
-          >
-            Back to home
-          </Button>
-
-          <Button
-            component={Link}
-            href="/about-us/leadership"
-            sx={{
+              fontFamily: "var(--font-playfair), Georgia, serif",
+              fontSize: { xs: 52, md: 82 },
+              lineHeight: 1.02,
+              letterSpacing: "-0.045em",
               color: "#ffffff",
-              border: "1px solid rgba(255,255,255,0.42)",
-              borderRadius: "999px",
-              px: 4,
-              py: 1.45,
-              textTransform: "none",
-              fontSize: 15,
-              fontWeight: 600,
-              "&:hover": {
-                borderColor: "#ffffff",
-                bgcolor: "rgba(255,255,255,0.08)",
-              },
             }}
           >
-            Visit leadership
-          </Button>
-        </Box>
+            What we do
+          </Typography>
+        </Container>
+      </Box>
+
+      <Container maxWidth="md" sx={{ py: { xs: 8, md: 13 } }}>
+        <Typography
+          sx={{
+            fontSize: 12,
+            letterSpacing: "0.34em",
+            textTransform: "uppercase",
+            color: "#0b2f29",
+            mb: 3,
+          }}
+        >
+          Focused on returns
+        </Typography>
+
+        <Box sx={{ height: "1px", bgcolor: "rgba(7,63,53,0.32)", mb: 4 }} />
+
+        <Typography
+          component="h2"
+          sx={{
+            fontFamily: "var(--font-playfair), Georgia, serif",
+            fontSize: { xs: 42, md: 58 },
+            lineHeight: 1.08,
+            letterSpacing: "-0.035em",
+            color: "#214d46",
+            mb: 4,
+          }}
+        >
+          Quantitative investment management
+        </Typography>
+
+        <Typography
+          sx={{
+            fontSize: { xs: 18, md: 22 },
+            lineHeight: 1.55,
+            color: "#071f1b",
+          }}
+        >
+          We research, design and trade systematic investment strategies. Our aim
+          is to generate absolute returns and provide valuable diversification
+          for our clients’ wider portfolios across a range of market
+          environments.
+        </Typography>
+      </Container>
+
+      <Container maxWidth="xl" sx={{ px: { xs: 3, md: 4.5 }, pb: 8 }}>
+        <InfoBlock
+          eyebrow="Driven by research"
+          title="Diverse capabilities; consistent approach"
+          description="Our strategies span trading frequencies and styles and are implemented across thousands of exchange-traded and over-the-counter instruments. All our strategies are rooted in our belief that original research can provide an investment edge."
+          imageSrc="/image/pic8.jpg"
+        />
+
+        <InfoBlock
+          eyebrow="Loss mitigation"
+          title="Risk matters"
+          description="Risk management underpins long-term success. The careful consideration of risk informs everything we do, from the design of our investment strategies to the size of our positions in markets."
+          imageSrc="/image/pic9.jpg"
+        />
       </Container>
     </Box>
   );
