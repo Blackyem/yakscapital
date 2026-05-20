@@ -23,7 +23,7 @@ function InfoBlock({ eyebrow, title, description, imageSrc }: InfoBlockProps) {
       ([entry]) => {
         setShowContent(entry.isIntersecting);
       },
-      { threshold: 0.25 }
+      { threshold: 0.25 },
     );
 
     observer.observe(element);
@@ -186,35 +186,38 @@ export default function WhatWeDoPage() {
             mb: 4,
           }}
         >
-          Quantitative investment management
+          Over The Counter Trading
         </Typography>
 
         <Typography
           sx={{
-            fontSize: { xs: 18, md: 22 },
+            fontSize: { xs: 18, md: 18 },
             lineHeight: 1.55,
             color: "#071f1b",
           }}
         >
-          We research, design and trade systematic investment strategies. Our aim
-          is to generate absolute returns and provide valuable diversification
-          for our clients’ wider portfolios across a range of market
-          environments.
+          Our over-the-counter (OTC) trading services provide clients with
+          discreet, efficient execution for large and strategic transactions
+          outside public exchanges. By offering deep liquidity, competitive
+          pricing. we give clients direct access to a global network of buyers
+          and sellers, enabling fast, secure, and flexible transactions with
+          competitive rates and seamless settlement across digital asset
+          markets.
         </Typography>
       </Container>
 
       <Container maxWidth="xl" sx={{ px: { xs: 3, md: 4.5 }, pb: 8 }}>
         <InfoBlock
           eyebrow="Driven by research"
-          title="Diverse capabilities; consistent approach"
-          description="Our strategies span trading frequencies and styles and are implemented across thousands of exchange-traded and over-the-counter instruments. All our strategies are rooted in our belief that original research can provide an investment edge."
+          title="Quantitative investment management"
+          description="We research, design and trade systematic investment strategies. Our aim is to generate absolute returns and provide valuable diversification for our clients’ wider portfolios across a range of market environments. "
           imageSrc="/whatwedo/whatwedo2.jpg"
         />
 
         <InfoBlock
           eyebrow="Loss mitigation"
           title="Risk matters"
-          description="Risk management underpins long-term success. The careful consideration of risk informs everything we do, from the design of our investment strategies to the size of our positions in markets."
+          description="Risk management has underpinned our long-term success. The careful consideration of risk informs everything we do at Yaks Capital, from the design of our investment strategies and the size of our positions in markets, to the counterparties we onboard and the processes that drive our business. "
           imageSrc="/whatwedo/whatwedo3.jpg"
         />
       </Container>

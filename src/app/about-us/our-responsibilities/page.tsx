@@ -157,7 +157,7 @@ export default function OurResponsibilitiesPage() {
         }}
       >
         <Image
-          src="/image/pic5.jpg"
+          src="/ourresponse/res4.jpg"
           alt="Our responsibilities"
           fill
           priority
@@ -227,43 +227,39 @@ export default function OurResponsibilitiesPage() {
 
         <Typography
           sx={{
-            fontSize: { xs: 18, md: 22 },
+            fontSize: { xs: 18, md: 18 },
             lineHeight: 1.55,
             color: "#071f1b",
           }}
         >
-          We are mindful of our role and responsibilities when interacting with
-          financial markets and society as a whole. YaksCapital supports
-          initiatives that seek to address meaningful challenges through
-          disciplined investment management, thoughtful decision-making and
-          long-term commitment.
+          We conduct our business with integrity and we approach every investment with discipline and a strong sense of responsibility, and a deep commitment to protecting and growing the capital our clients invests with us. 
         </Typography>
       </Container>
 
       <Container maxWidth="xl" sx={{ px: { xs: 3, md: 4.5 }, pb: 8 }}>
         <ResponsibilityBlock
-          eyebrow="Accountable"
+          eyebrow="Capital Stewardship "
           title="Responsible investment"
-          description="Our approach to responsible investment spans industry engagement, asset selection and ownership, with accountability at the center of how we operate."
+          description="We treat client capital with the same care and accountability as our own, focusing on long-term value creation and disciplined risk management. "
           buttonText="Read our responsible investment policy"
-          imageSrc="/image/pic6.jpg"
+          imageSrc="/ourresponse/res1.jpg"
         />
 
         <ResponsibilityBlock
           eyebrow="Ethical"
           title="Corporate social responsibility"
-          description="We consider our obligations carefully. Operating our business in a responsible and ethical manner is central to our values and long-term partnerships."
+          description="We always consider our fiduciary obligations. Operating our business in a responsible and ethical manner is core to our values. We uphold the highest standards of professionalism, compliance, and ethical behavior in all aspects of our business."
           buttonText="Read our corporate social responsibility policy"
-          imageSrc="/image/pic11.jpg"
+          imageSrc="/ourresponse/res3.jpg"
           reverse
         />
 
         <ResponsibilityBlock
           eyebrow="Inclusive"
-          title="Diversity and inclusion"
-          description="We recognise the benefit that diversity brings to our firm. Our goal is to attract, support and retain a diverse mix of highly skilled individuals."
-          buttonText="Read our diversity and inclusion statement"
-          imageSrc="/image/pic3.jpg"
+          title="Transparency & Trust "
+          description="We believe strong partnerships are built on clear communication, operational transparency, and alignment with our clients’ objectives."
+          buttonText="Read our Transparency & Trust policy"
+          imageSrc="/ourresponse/res5.jpg"
         />
       </Container>
     </Box>

@@ -21,8 +21,8 @@ const aboutItems: DropdownItem[] = [
 ];
 
 const joinItems: DropdownItem[] = [
-  { label: "Career opportunities", href: "/join-us/careers" },
-  { label: "Life at YaksCapital", href: "/join-us/life-at-yakscapital" },
+  { label: "Join Our Team", href: "/join-us/careers" },
+  { label: "Management", href: "/join-us/management" },
 ];
 
 export default function Navbar() {
