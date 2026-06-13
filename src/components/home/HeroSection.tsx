@@ -9,7 +9,7 @@ export default function HeroSection() {
       component="section"
       sx={{
         position: "relative",
-        minHeight: { xs: 620, md: 655 },
+        minHeight: { xs: 520, sm: 620, md: 655 },
         bgcolor: "#021f1a",
         overflow: "hidden",
       }}
@@ -18,14 +18,14 @@ export default function HeroSection() {
         sx={{
           position: "relative",
           height: "100%",
-          minHeight: { xs: 620, md: 655 },
+          minHeight: { xs: 520, sm: 620, md: 655 },
           px: { xs: 3, md: 4 },
         }}
       >
         <Box
           sx={{
             position: "absolute",
-            top: { xs: 126, md: 170 },
+            top: { xs: 100, sm: 126, md: 170 },
             left: "50%",
             transform: "translateX(-50%)",
             width: "100%",
@@ -44,10 +44,11 @@ export default function HeroSection() {
               lineHeight: 1.12,
               letterSpacing: "-0.02em",
               fontSize: {
-                xs: 46,
-                sm: 60,
+                xs: 34,
+                sm: 46,
                 md: 72,
               },
+              px: { xs: 1, sm: 0 },
             }}
           >
             We are experts in quantitative investing
@@ -57,7 +58,7 @@ export default function HeroSection() {
         <Box
           sx={{
             position: "absolute",
-            top: { xs: 335, md: 398 },
+            top: { xs: 240, sm: 335, md: 398 },
             left: "50%",
             transform: "translateX(-50%)",
             width: { xs: "72%", md: 845 },
@@ -71,36 +72,36 @@ export default function HeroSection() {
         <Box
           sx={{
             position: "absolute",
-            top: { xs: 335, md: 398 },
+            top: { xs: 240, sm: 335, md: 398 },
             left: "50%",
             transform: "translateX(-50%)",
             width: "1px",
-            height: { xs: 285, md: 257 },
+            height: { xs: 280, sm: 285, md: 257 },
             bgcolor: "rgba(255,255,255,0.82)",
             zIndex: 1,
           }}
         />
       </Box>
 
-     <Box
-  sx={{
-    position: "absolute",
-    right: { xs: 24, md: 76 },
-    bottom: { xs: 24, md: 26 },
-    width: { xs: 60, md: 120 },   // was 54/74 — now much more visible
-    height: { xs: 32, md: 52 },   // was 28/38 — proportional increase
-    opacity: 0.28,                 // was 0.22 — slightly more presence
-    display: { xs: "none", md: "block" },
-    filter: "grayscale(1)",
-  }}
->
-  <Image
-    src="/YaksCapitalWhite.png"
-    alt=""
-    fill
-    style={{ objectFit: "contain" }}
-  />
-</Box>
+      <Box
+        sx={{
+          position: "absolute",
+          right: { xs: 24, md: 76 },
+          bottom: { xs: 24, md: 26 },
+          width: { xs: 60, md: 120 },
+          height: { xs: 32, md: 52 },
+          opacity: 0.28,
+          display: { xs: "none", md: "block" },
+          filter: "grayscale(1)",
+        }}
+      >
+        <Image
+          src="/YaksCapitalWhite.png"
+          alt=""
+          fill
+          style={{ objectFit: "contain" }}
+        />
+      </Box>
     </Box>
   );
 }

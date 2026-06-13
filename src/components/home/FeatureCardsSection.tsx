@@ -29,7 +29,7 @@ function FeatureCard({
     <Box
       sx={{
         position: "relative",
-        minHeight: { xs: 560, md: 535 },
+        minHeight: { xs: 480, sm: 560, md: 535 },
         overflow: "hidden",
         display: "flex",
         alignItems: "center",
@@ -95,7 +95,7 @@ function FeatureCard({
             fontWeight: 600,
             lineHeight: 1.05,
             letterSpacing: "-0.025em",
-            fontSize: { xs: 48, md: 58 },
+            fontSize: { xs: 36, sm: 48, md: 58 },
             mb: { xs: 3.5, md: 4 },
           }}
         >
@@ -163,7 +163,7 @@ export default function FeatureCardsSection() {
             title="Driven by Purpose"
             description="Experience matters, but execution defines us. Driven by decades of shared industry expertise, our executive team leads by example to set a forward-thinking agenda. We focus entirely on what matters most: delivering high-impact results, fostering long-term trust, and ensuring continuous success for our clients."
             buttonText="Our leadership"
-            href="/about-us/leadership"
+            href="about-us/our-responsibilities"
             imageSrc="/image/pic5.jpg"
             align="center"
           />
@@ -173,7 +173,7 @@ export default function FeatureCardsSection() {
             title="Innovation as Our Edge"
             description="True investment edges are engineered, not found. YaksCapital was established to transform financial markets through continuous research and technological development. This commitment to innovation remains our core guiding principle, driving our strategy and ensuring we consistently deliver long-term value for our partners."
             buttonText="Our history"
-            href="/about-us/history"
+            href="about-us/what-we-do"
             imageSrc="/image/pic11.jpg"
             align="center"
           />

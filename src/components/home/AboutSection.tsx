@@ -143,7 +143,7 @@ export default function AboutSection() {
             sx={{
               flex: "0 0 42%",
               position: "relative",
-              minHeight: { xs: 260, md: "auto" },
+              minHeight: { xs: 280, sm: 320, md: "auto" },
             }}
           >
             <Image

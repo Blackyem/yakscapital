@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { AppBar, Box, Button, Container, Toolbar } from "@mui/material";
+import { AppBar, Box, Button, Container, Toolbar, IconButton, Drawer, Typography } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import CloseIcon from "@mui/icons-material/Close";
+import MenuIcon from "@mui/icons-material/Menu";
 
 type DropdownKey = "about" | "join" | null;
 
@@ -28,17 +30,19 @@ const joinItems: DropdownItem[] = [
 export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<DropdownKey>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileExpanded, setMobileExpanded] = useState<DropdownKey>(null);
 
   useEffect(() => {
-  const handleScroll = () => {
-    setScrolled(window.scrollY > 20);
-  };
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
 
-  handleScroll();
+    handleScroll();
 
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const closeDropdown = () => setOpenDropdown(null);
 
@@ -46,137 +50,368 @@ export default function Navbar() {
     setOpenDropdown((current) => (current === key ? null : key));
   };
 
+  const handleMobileToggle = useCallback(() => {
+    setMobileOpen((prev) => !prev);
+    setMobileExpanded(null);
+  }, []);
+
+  const handleMobileClose = useCallback(() => {
+    setMobileOpen(false);
+    setMobileExpanded(null);
+  }, []);
+
+  const handleMobileExpand = (key: Exclude<DropdownKey, null>) => {
+    setMobileExpanded((prev) => (prev === key ? null : key));
+  };
+
   return (
-    <AppBar
-      position="fixed"
-      elevation={0}
-     sx={{
-  bgcolor: scrolled ? "#052f28" : "transparent",
-  borderTop: scrolled ? "4px solid #f5f5f0" : "4px solid transparent",
-  boxShadow: "none",
-  transition: "background-color 250ms ease, border-color 250ms ease",
-  zIndex: 1200,
-}}
-    >
-      <Container maxWidth={false} sx={{ px: { xs: 2.5, md: 4.5 } }}>
-        <Toolbar
-          disableGutters
-          sx={{
-            minHeight: { xs: 84, md: 95 },
-            display: "grid",
-            gridTemplateColumns: {
-              xs: "1fr auto",
-              md: "240px 1fr 240px",
-            },
-            alignItems: "center",
-          }}
-        >
-          <Link href="/" aria-label="YaksCapital home" onClick={closeDropdown}>
+    <>
+      <AppBar
+        position="fixed"
+        elevation={0}
+        sx={{
+          bgcolor: scrolled ? "#052f28" : "transparent",
+          borderTop: scrolled ? "4px solid #f5f5f0" : "4px solid transparent",
+          boxShadow: "none",
+          transition: "background-color 250ms ease, border-color 250ms ease",
+          zIndex: 1200,
+        }}
+      >
+        <Container maxWidth={false} sx={{ px: { xs: 2.5, md: 4.5 } }}>
+          <Toolbar
+            disableGutters
+            sx={{
+              minHeight: { xs: 72, md: 95 },
+              display: "grid",
+              gridTemplateColumns: {
+                xs: "1fr auto",
+                md: "240px 1fr 240px",
+              },
+              alignItems: "center",
+            }}
+          >
+            <Link href="/" aria-label="YaksCapital home" onClick={closeDropdown}>
+              <Box
+                sx={{
+                  width: { xs: 140, md: 180 },
+                  height: { xs: 40, md: 48 },
+                  position: "relative",
+                }}
+              >
+                <Image
+                  src="/YaksCapitalWhite.png"
+                  alt="YaksCapital logo"
+                  fill
+                  priority
+                  style={{
+                    objectFit: "contain",
+                    objectPosition: "left center",
+                  }}
+                />
+              </Box>
+            </Link>
+
+            <Box
+              component="nav"
+              sx={{
+                display: { xs: "none", md: "flex" },
+                justifyContent: "center",
+                alignItems: "center",
+                gap: 5.5,
+                height: "100%",
+              }}
+            >
+              <TopNavLink href="/" onClick={closeDropdown}>
+                Home
+              </TopNavLink>
+
+              <DropdownTrigger
+                label="About us"
+                dropdownKey="about"
+                openDropdown={openDropdown}
+                onToggle={toggleDropdown}
+                onClose={closeDropdown}
+                items={aboutItems}
+              />
+
+              <TopNavLink href="/news" onClick={closeDropdown}>
+                News
+              </TopNavLink>
+
+              <DropdownTrigger
+                label="Join us"
+                dropdownKey="join"
+                openDropdown={openDropdown}
+                onToggle={toggleDropdown}
+                onClose={closeDropdown}
+                items={joinItems}
+              />
+
+              <TopNavLink href="/contact-us" onClick={closeDropdown}>
+                Contact us
+              </TopNavLink>
+            </Box>
+
             <Box
               sx={{
-                width: { xs: 160, md: 180 },
-                height: 48,
-                position: "relative",
+                display: { xs: "none", md: "flex" },
+                justifyContent: "flex-end",
               }}
             >
-              <Image
-                src="/YaksCapitalWhite.png"
-                alt="YaksCapital logo"
-                fill
-                priority
-                style={{
-                  objectFit: "contain",
-                  objectPosition: "left center",
-                }}
-              />
+              <Link href="/investor-login">
+                <Button
+                  variant="contained"
+                  sx={{
+                    color: "#214d46",
+                    bgcolor: "#ffffff",
+                    minWidth: 146,
+                    height: 49,
+                    px: 3,
+                    fontSize: 14,
+                    boxShadow: "none",
+                    textTransform: "none",
+                    "&:hover": {
+                      bgcolor: "#f2f2ed",
+                      boxShadow: "none",
+                    },
+                  }}
+                >
+                  Investor login
+                </Button>
+              </Link>
             </Box>
-          </Link>
 
-          <Box
-            component="nav"
-            sx={{
-              display: { xs: "none", md: "flex" },
-              justifyContent: "center",
-              alignItems: "center",
-              gap: 5.5,
-              height: "100%",
-            }}
-          >
-            <TopNavLink href="/" onClick={closeDropdown}>
-              Home
-            </TopNavLink>
-
-            <DropdownTrigger
-              label="About us"
-              dropdownKey="about"
-              openDropdown={openDropdown}
-              onToggle={toggleDropdown}
-              onClose={closeDropdown}
-              items={aboutItems}
-            />
-
-            <TopNavLink href="/news" onClick={closeDropdown}>
-              News
-            </TopNavLink>
-
-            <DropdownTrigger
-              label="Join us"
-              dropdownKey="join"
-              openDropdown={openDropdown}
-              onToggle={toggleDropdown}
-              onClose={closeDropdown}
-              items={joinItems}
-            />
-
-            <TopNavLink href="/contact-us" onClick={closeDropdown}>
-              Contact us
-            </TopNavLink>
-          </Box>
-
-          <Box
-            sx={{
-              display: { xs: "none", md: "flex" },
-              justifyContent: "flex-end",
-            }}
-          >
-            <Button
-              variant="contained"
+            <IconButton
+              onClick={handleMobileToggle}
               sx={{
-                color: "#214d46",
-                bgcolor: "#ffffff",
-                minWidth: 146,
-                height: 49,
-                px: 3,
-                fontSize: 14,
-                boxShadow: "none",
-                textTransform: "none",
-                "&:hover": {
-                  bgcolor: "#f2f2ed",
-                  boxShadow: "none",
-                },
+                display: { xs: "inline-flex", md: "none" },
+                color: "#ffffff",
+                justifySelf: "end",
+                p: 1,
               }}
+              aria-label="Open menu"
             >
-              Investor login
-            </Button>
-          </Box>
+              <MenuIcon sx={{ fontSize: 28 }} />
+            </IconButton>
+          </Toolbar>
+        </Container>
+      </AppBar>
 
-          <Button
+      <Drawer
+        anchor="right"
+        open={mobileOpen}
+        onClose={handleMobileClose}
+        sx={{
+          display: { xs: "block", md: "none" },
+          "& .MuiDrawer-paper": {
+            width: "75%",
+            maxWidth: 280,
+            bgcolor: "#052f28",
+            border: "none",
+            top: 0,
+            height: "100%",
+          },
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            height: "100%",
+            px: 2.5,
+            pt: 1.5,
+            pb: 3,
+          }}
+        >
+          <Box
             sx={{
-              display: { xs: "inline-flex", md: "none" },
-              color: "#ffffff",
-              border: "1px solid rgba(255,255,255,0.45)",
-              borderRadius: 999,
-              px: 2,
-              py: 1,
-              justifySelf: "end",
-              textTransform: "none",
+              display: "flex",
+              justifyContent: "flex-end",
+              mb: 1,
             }}
           >
-            Menu
-          </Button>
-        </Toolbar>
-      </Container>
-    </AppBar>
+            <IconButton
+              onClick={handleMobileClose}
+              sx={{ color: "#ffffff" }}
+              aria-label="Close menu"
+            >
+              <CloseIcon sx={{ fontSize: 28 }} />
+            </IconButton>
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 0,
+            }}
+          >
+            <MobileNavLink href="/" onClick={handleMobileClose}>
+              Home
+            </MobileNavLink>
+
+            <Box>
+              <Box
+                role="button"
+                tabIndex={0}
+                onClick={() => handleMobileExpand("about")}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleMobileExpand("about");
+                  }
+                }}
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  py: 1.75,
+                  borderBottom: "1px solid rgba(255,255,255,0.1)",
+                  cursor: "pointer",
+                }}
+              >
+                <Typography
+                  sx={{
+                    color: "#ffffff",
+                    fontSize: 18,
+                    fontWeight: 400,
+                  }}
+                >
+                  About us
+                </Typography>
+                <KeyboardArrowDownIcon
+                  sx={{
+                    color: "#ffffff",
+                    fontSize: 20,
+                    transform: mobileExpanded === "about" ? "rotate(180deg)" : "rotate(0deg)",
+                    transition: "transform 200ms ease",
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  overflow: "hidden",
+                  maxHeight: mobileExpanded === "about" ? 300 : 0,
+                  transition: "max-height 300ms ease",
+                }}
+              >
+                {aboutItems.map((item) => (
+                  <Link key={item.href} href={item.href} onClick={handleMobileClose}>
+                    <Box
+                      sx={{
+                        py: 1.25,
+                        pl: 2,
+                        color: "rgba(255,255,255,0.6)",
+                        fontSize: 15,
+                        "&:hover": { color: "#ffffff" },
+                      }}
+                    >
+                      {item.label}
+                    </Box>
+                  </Link>
+                ))}
+              </Box>
+            </Box>
+
+            <MobileNavLink href="/news" onClick={handleMobileClose}>
+              News
+            </MobileNavLink>
+
+            <Box>
+              <Box
+                role="button"
+                tabIndex={0}
+                onClick={() => handleMobileExpand("join")}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleMobileExpand("join");
+                  }
+                }}
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  py: 1.75,
+                  borderBottom: "1px solid rgba(255,255,255,0.1)",
+                  cursor: "pointer",
+                }}
+              >
+                <Typography
+                  sx={{
+                    color: "#ffffff",
+                    fontSize: 18,
+                    fontWeight: 400,
+                  }}
+                >
+                  Join us
+                </Typography>
+                <KeyboardArrowDownIcon
+                  sx={{
+                    color: "#ffffff",
+                    fontSize: 20,
+                    transform: mobileExpanded === "join" ? "rotate(180deg)" : "rotate(0deg)",
+                    transition: "transform 200ms ease",
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  overflow: "hidden",
+                  maxHeight: mobileExpanded === "join" ? 200 : 0,
+                  transition: "max-height 300ms ease",
+                }}
+              >
+                {joinItems.map((item) => (
+                  <Link key={item.href} href={item.href} onClick={handleMobileClose}>
+                    <Box
+                      sx={{
+                        py: 1.25,
+                        pl: 2,
+                        color: "rgba(255,255,255,0.6)",
+                        fontSize: 15,
+                        "&:hover": { color: "#ffffff" },
+                      }}
+                    >
+                      {item.label}
+                    </Box>
+                  </Link>
+                ))}
+              </Box>
+            </Box>
+
+            <MobileNavLink href="/contact-us" onClick={handleMobileClose}>
+              Contact us
+            </MobileNavLink>
+          </Box>
+
+          <Box sx={{ pt: 3 }}>
+            <Link href="/investor-login" onClick={handleMobileClose}>
+              <Button
+                variant="contained"
+                fullWidth
+                sx={{
+                  color: "#214d46",
+                  bgcolor: "#ffffff",
+                  height: 48,
+                  fontSize: 14,
+                  fontWeight: 600,
+                  boxShadow: "none",
+                  textTransform: "none",
+                  borderRadius: "10px",
+                  "&:hover": {
+                    bgcolor: "#f2f2ed",
+                    boxShadow: "none",
+                  },
+                }}
+              >
+                Investor login
+              </Button>
+            </Link>
+          </Box>
+        </Box>
+      </Drawer>
+    </>
   );
 }
 
@@ -386,5 +621,29 @@ function DropdownMenu({ items, onClose }: DropdownMenuProps) {
         ))}
       </Box>
     </Box>
+  );
+}
+
+type MobileNavLinkProps = {
+  href: string;
+  children: React.ReactNode;
+  onClick: () => void;
+};
+
+function MobileNavLink({ href, children, onClick }: MobileNavLinkProps) {
+  return (
+    <Link href={href} onClick={onClick}>
+      <Box
+        sx={{
+          py: 1.75,
+          borderBottom: "1px solid rgba(255,255,255,0.1)",
+          color: "#ffffff",
+          fontSize: 18,
+          fontWeight: 400,
+        }}
+      >
+        {children}
+      </Box>
+    </Link>
   );
 }

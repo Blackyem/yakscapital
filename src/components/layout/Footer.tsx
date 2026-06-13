@@ -77,14 +77,14 @@ export default function Footer() {
       <Box
         sx={{
           position: "absolute",
-          right: { xs: "8%", md: "12%" },
+          right: { xs: "5%", md: "12%" },
           top: { xs: "28%", md: "22%" },
-          fontSize: { xs: 180, md: 260 },    // smaller — was 260/400
+          fontSize: { xs: 120, sm: 160, md: 260 },
           lineHeight: 0.85,
           fontFamily: "var(--font-playfair), Georgia, serif",
           fontWeight: 700,
-          fontStyle: "italic",               // italic — like Winton's W
-          color: "rgba(255,255,255,0.13)",   // clearly seen underneath — was 0.045
+          fontStyle: "italic",
+          color: "rgba(255,255,255,0.13)",
           userSelect: "none",
           pointerEvents: "none",
           letterSpacing: "-0.05em",
@@ -145,10 +145,11 @@ export default function Footer() {
                   <Typography
                     sx={{
                       color: "rgba(255,255,255,0.78)",
-                      fontSize: 14,
+                      fontSize: { xs: 13, md: 14 },
                       fontFamily: "var(--font-sans, sans-serif)",
                       fontWeight: 400,
-                      px: { xs: 1.5, md: 2 },
+                      px: { xs: 1.2, md: 2 },
+                      py: { xs: 0.5, md: 0 },
                       whiteSpace: "nowrap",
                       WebkitFontSmoothing: "antialiased",
                       transition: "opacity 0.2s",
@@ -209,9 +210,10 @@ export default function Footer() {
               <Typography
                 sx={{
                   color: "rgba(255,255,255,0.45)",
-                  fontSize: 11,
+                  fontSize: { xs: 10, md: 11 },
                   fontFamily: "var(--font-sans, sans-serif)",
-                  px: 1.5,
+                  px: { xs: 1, md: 1.5 },
+                  py: { xs: 0.5, md: 0 },
                   WebkitFontSmoothing: "antialiased",
                   transition: "opacity 0.2s",
                   "&:hover": { color: "rgba(255,255,255,0.7)" },
@@ -220,7 +222,7 @@ export default function Footer() {
                 {link.label}
               </Typography>
             </Link>
-            <Typography sx={{ color: "rgba(255,255,255,0.2)", fontSize: 11, userSelect: "none" }}>
+            <Typography sx={{ color: "rgba(255,255,255,0.2)", fontSize: { xs: 10, md: 11 }, userSelect: "none" }}>
               |
             </Typography>
           </Box>
@@ -229,9 +231,10 @@ export default function Footer() {
         <Typography
           sx={{
             color: "rgba(255,255,255,0.45)",
-            fontSize: 11,
+            fontSize: { xs: 10, md: 11 },
             fontFamily: "var(--font-sans, sans-serif)",
-            px: 1.5,
+            px: { xs: 1, md: 1.5 },
+            py: { xs: 0.5, md: 0 },
             WebkitFontSmoothing: "antialiased",
           }}
         >
