@@ -241,7 +241,7 @@ export default function OurResponsibilitiesPage() {
           title="Responsible investment"
           description="We treat client capital with the same care and accountability as our own, focusing on long-term value creation and disciplined risk management. "
           buttonText="Read our responsible investment policy"
-          imageSrc="/ourresponse/res1.jpg"
+          imageSrc="/saheed/investment policy.png"
         />
 
         <ResponsibilityBlock
@@ -249,7 +249,7 @@ export default function OurResponsibilitiesPage() {
           title="Corporate social responsibility"
           description="We always consider our fiduciary obligations. Operating our business in a responsible and ethical manner is core to our values. We uphold the highest standards of professionalism, compliance, and ethical behavior in all aspects of our business."
           buttonText="Read our corporate social responsibility policy"
-          imageSrc="/ourresponse/res3.jpg"
+          imageSrc="/saheed/responsibility.png"
           reverse
         />
 

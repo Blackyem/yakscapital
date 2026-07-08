@@ -211,14 +211,14 @@ export default function WhatWeDoPage() {
           eyebrow="Driven by research"
           title="Quantitative investment management"
           description="We research, design and trade systematic investment strategies. Our aim is to generate absolute returns and provide valuable diversification for our clients’ wider portfolios across a range of market environments. "
-          imageSrc="/whatwedo/whatwedo2.jpg"
+          imageSrc="/saheed/Quantitative investment management.png"
         />
 
         <InfoBlock
           eyebrow="Loss mitigation"
           title="Risk matters"
           description="Risk management has underpinned our long-term success. The careful consideration of risk informs everything we do at Yaks Capital, from the design of our investment strategies and the size of our positions in markets, to the counterparties we onboard and the processes that drive our business. "
-          imageSrc="/whatwedo/whatwedo3.jpg"
+          imageSrc="/saheed/risk matters.png"
         />
       </Container>
     </Box>
