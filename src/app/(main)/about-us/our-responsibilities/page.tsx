@@ -157,7 +157,7 @@ export default function OurResponsibilitiesPage() {
         }}
       >
         <Image
-          src="/ourresponse/res4.jpg"
+          src="/ourresponse/res4.webp"
           alt="Our responsibilities"
           fill
           priority
@@ -241,7 +241,7 @@ export default function OurResponsibilitiesPage() {
           title="Responsible investment"
           description="We treat client capital with the same care and accountability as our own, focusing on long-term value creation and disciplined risk management. "
           buttonText="Read our responsible investment policy"
-          imageSrc="/saheed/investment policy.png"
+          imageSrc="/saheed/investment-policy.webp"
         />
 
         <ResponsibilityBlock
@@ -249,7 +249,7 @@ export default function OurResponsibilitiesPage() {
           title="Corporate social responsibility"
           description="We always consider our fiduciary obligations. Operating our business in a responsible and ethical manner is core to our values. We uphold the highest standards of professionalism, compliance, and ethical behavior in all aspects of our business."
           buttonText="Read our corporate social responsibility policy"
-          imageSrc="/saheed/responsibility.png"
+          imageSrc="/saheed/responsibility.webp"
           reverse
         />
 
@@ -258,7 +258,7 @@ export default function OurResponsibilitiesPage() {
           title="Transparency & Trust "
           description="We believe strong partnerships are built on clear communication, operational transparency, and alignment with our clients' objectives."
           buttonText="Read our Transparency & Trust policy"
-          imageSrc="/ourresponse/res5.jpg"
+          imageSrc="/ourresponse/res5.webp"
         />
       </Container>
     </Box>

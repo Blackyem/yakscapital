@@ -164,7 +164,7 @@ export default function FeatureCardsSection() {
             description="Experience matters, but execution defines us. Driven by decades of shared industry expertise, our executive team leads by example to set a forward-thinking agenda. We focus entirely on what matters most: delivering high-impact results, fostering long-term trust, and ensuring continuous success for our clients."
             buttonText="Our leadership"
             href="about-us/our-responsibilities"
-            imageSrc="/image/pic5.jpg"
+            imageSrc="/image/pic5.webp"
             align="center"
           />
 
@@ -174,7 +174,7 @@ export default function FeatureCardsSection() {
             description="True investment edges are engineered, not found. YaksCapital was established to transform financial markets through continuous research and technological development. This commitment to innovation remains our core guiding principle, driving our strategy and ensuring we consistently deliver long-term value for our partners."
             buttonText="Our history"
             href="about-us/what-we-do"
-            imageSrc="/image/pic11.jpg"
+            imageSrc="/image/pic11.webp"
             align="center"
           />
         </Box>

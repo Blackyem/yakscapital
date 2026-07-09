@@ -147,7 +147,7 @@ export default function AboutSection() {
             }}
           >
             <Image
-              src="/saheed/multi strategy capabilities.png"
+              src="/saheed/multi-strategy-capabilities.webp"
               alt="Team at work"
               fill
               priority

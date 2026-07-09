@@ -46,7 +46,7 @@ export default function ContactUsPage() {
         }}
       >
         <Image
-          src="/contact/contact1.jpg"
+          src="/contact/contact1.webp"
           alt="Contact us"
           fill
           priority
