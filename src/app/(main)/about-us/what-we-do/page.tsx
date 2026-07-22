@@ -211,7 +211,7 @@ export default function WhatWeDoPage() {
           eyebrow="Driven by research"
           title="Quantitative investment management"
           description="We research, design and trade systematic investment strategies. Our aim is to generate absolute returns and provide valuable diversification for our clients’ wider portfolios across a range of market environments. "
-          imageSrc="/saheed/quantitative-investment-management.webp"
+          imageSrc="/saheed/Office02.png"
         />
 
         <InfoBlock

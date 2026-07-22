@@ -28,7 +28,7 @@ export default function HeroSection() {
             top: { xs: 100, sm: 126, md: 170 },
             left: "50%",
             transform: "translateX(-50%)",
-            width: "100%",
+            width: "100vw",
             zIndex: 2,
           }}
         >

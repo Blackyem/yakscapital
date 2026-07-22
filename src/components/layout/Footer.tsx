@@ -102,7 +102,7 @@ export default function Footer() {
         {/* Rule — sits inside the container so it spans exactly logo-to-button */}
         <Box
           sx={{
-            width: "100%",
+            width: "100vw",
             height: "1px",
             bgcolor: "rgba(255,255,255,0.38)",
           }}

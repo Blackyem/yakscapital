@@ -32,7 +32,7 @@ function ResponsibilityBlock({
       ([entry]) => {
         setShowContent(entry.isIntersecting);
       },
-      { threshold: 0.25 }
+      { threshold: 0.25 },
     );
 
     observer.observe(element);
@@ -47,13 +47,22 @@ function ResponsibilityBlock({
         gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
         gap: { xs: 5, md: 12 },
         alignItems: "center",
-        py: { xs: 7, md: 9 },
+        py: {
+          xs: 5,
+          sm: 6,
+          md: 9,
+          overflow: "hidden",
+        },
       }}
     >
       <Box
         sx={{
           position: "relative",
-          height: { xs: 300, sm: 380, md: 560 },
+          height: {
+            xs: 220,
+            sm: 300,
+            md: 560,
+          },
           borderRadius: "8px",
           overflow: "hidden",
           order: { xs: 1, md: reverse ? 2 : 1 },
@@ -72,13 +81,16 @@ function ResponsibilityBlock({
         ref={contentRef}
         sx={{
           order: { xs: 2, md: reverse ? 1 : 2 },
-          maxWidth: 560,
+          maxWidth: {
+            xs: "100%",
+            md: 560,
+          },
           opacity: showContent ? 1 : 0,
           transform: showContent
             ? "translateX(0)"
             : reverse
-            ? "translateX(-70px)"
-            : "translateX(70px)",
+              ? "translateX(-70px)"
+              : "translateX(70px)",
           transition:
             "opacity 800ms ease, transform 900ms cubic-bezier(0.22, 1, 0.36, 1)",
         }}
@@ -113,8 +125,15 @@ function ResponsibilityBlock({
 
         <Typography
           sx={{
-            fontSize: { xs: 15, md: 17 },
-            lineHeight: 1.7,
+            fontSize: {
+              xs: 15,
+              sm: 16,
+              md: 17,
+            },
+            lineHeight: {
+              xs: 1.8,
+              md: 1.7,
+            },
             color: "#071f1b",
             mb: 5,
           }}
@@ -123,7 +142,12 @@ function ResponsibilityBlock({
         </Typography>
 
         <Button
+          fullWidth={false}
           sx={{
+            width: {
+              xs: "100%",
+              sm: "fit-content",
+            },
             bgcolor: "#168b79",
             color: "#ffffff",
             borderRadius: "999px",
@@ -150,7 +174,15 @@ export default function OurResponsibilitiesPage() {
       <Box
         sx={{
           position: "relative",
-          height: { xs: 400, sm: 520, md: 640 },
+          height: {
+            xs: "50vh",
+            sm: "60vh",
+            md: 640,
+          },
+          minHeight: {
+            xs: 300,
+            sm: 420,
+          },
           display: "flex",
           alignItems: "flex-end",
           overflow: "hidden",
@@ -184,8 +216,15 @@ export default function OurResponsibilitiesPage() {
             component="h1"
             sx={{
               fontFamily: "var(--font-playfair), Georgia, serif",
-              fontSize: { xs: 36, sm: 52, md: 82 },
-              lineHeight: 1.02,
+              fontSize: {
+                xs: 30,
+                sm: 42,
+                md: 82,
+              },
+              lineHeight: {
+                xs: 1.1,
+                md: 1.02,
+              },
               letterSpacing: "-0.045em",
               color: "#ffffff",
             }}
@@ -195,7 +234,10 @@ export default function OurResponsibilitiesPage() {
         </Container>
       </Box>
 
-      <Container maxWidth="md" sx={{ py: { xs: 8, md: 13 }, px: { xs: 3, md: "auto" } }}>
+      <Container
+        maxWidth="md"
+        sx={{ py: { xs: 8, md: 13 }, px: { xs: 3, md: "auto" } }}
+      >
         <Typography
           sx={{
             fontSize: { xs: 11, md: 12 },
@@ -214,7 +256,11 @@ export default function OurResponsibilitiesPage() {
           component="h2"
           sx={{
             fontFamily: "var(--font-playfair), Georgia, serif",
-            fontSize: { xs: 32, sm: 42, md: 58 },
+            fontSize: {
+              xs: 26,
+              sm: 36,
+              md: 58,
+            },
             lineHeight: 1.08,
             letterSpacing: "-0.035em",
             color: "#214d46",
@@ -231,7 +277,10 @@ export default function OurResponsibilitiesPage() {
             color: "#071f1b",
           }}
         >
-          We conduct our business with integrity and we approach every investment with discipline and a strong sense of responsibility, and a deep commitment to protecting and growing the capital our clients invests with us. 
+          We conduct our business with integrity and we approach every
+          investment with discipline and a strong sense of responsibility, and a
+          deep commitment to protecting and growing the capital our clients
+          invests with us.
         </Typography>
       </Container>
 
@@ -241,7 +290,7 @@ export default function OurResponsibilitiesPage() {
           title="Responsible investment"
           description="We treat client capital with the same care and accountability as our own, focusing on long-term value creation and disciplined risk management. "
           buttonText="Read our responsible investment policy"
-          imageSrc="/saheed/investment-policy.webp"
+          imageSrc="/saheed/Office3.png"
         />
 
         <ResponsibilityBlock
@@ -249,7 +298,7 @@ export default function OurResponsibilitiesPage() {
           title="Corporate social responsibility"
           description="We always consider our fiduciary obligations. Operating our business in a responsible and ethical manner is core to our values. We uphold the highest standards of professionalism, compliance, and ethical behavior in all aspects of our business."
           buttonText="Read our corporate social responsibility policy"
-          imageSrc="/saheed/responsibility.webp"
+          imageSrc="/saheed/Office04.png"
           reverse
         />
 

@@ -61,7 +61,7 @@ function FeatureCard({
         sx={{
           position: "relative",
           zIndex: 2,
-          width: "100%",
+          width: "100vw",
           maxWidth: 430,
           textAlign: isCentered ? "center" : "left",
           color: "#ffffff",
@@ -81,7 +81,7 @@ function FeatureCard({
 
         <Box
           sx={{
-            width: "100%",
+            width: "100vw",
             height: "1px",
             bgcolor: "rgba(255,255,255,0.55)",
             mb: { xs: 3, md: 3.5 },
