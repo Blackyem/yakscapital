@@ -165,6 +165,7 @@ export default function Footer() {
           </Box>
 
           {/* Investor login pill */}
+            <Link href="/investor-login">
           <Box sx={{ display: "flex", justifyContent: { xs: "flex-start", md: "flex-end" } }}>
             <Box
               component="button"
@@ -189,6 +190,7 @@ export default function Footer() {
               Investor login
             </Box>
           </Box>
+           </Link>
         </Box>
       </Container>
 

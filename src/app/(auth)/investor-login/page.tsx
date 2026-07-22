@@ -173,7 +173,7 @@ export default function InvestorLoginPage() {
 
         <Box
           sx={{
-            width: "100vw",
+            width: "100%",
             maxWidth: 420,
             bgcolor: "#073f35",
             borderRadius: "16px",
@@ -496,7 +496,7 @@ function Field({
         }
         sx={{
           display: "block",
-          width: "100vw",
+          width: "100%",
           border: focused
             ? "1.5px solid rgba(255,255,255,0.4)"
             : "1.5px solid rgba(255,255,255,0.1)",
