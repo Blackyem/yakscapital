@@ -8,6 +8,11 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfa
 
 export const metadata: Metadata = {
   title: "YaksCapital",
+   icons: {
+    icon: "/Logo.png",
+    shortcut: "/Logo.png",
+    apple: "/icon.png",
+  },
   description: "Quantitative investment management firm",
 };
 
